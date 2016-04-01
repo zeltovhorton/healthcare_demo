@@ -1,0 +1,51 @@
+output:
+  # whether to write data points to the "console" or to a "file", defaults to "console"
+  destination: console
+
+data:
+  start-date-time: 2015-01-01T12:00:00Z
+  end-date-time: 2015-01-01T12:05:00Z
+  suppress-night-time-measures: false
+  mean-inter-point-duration: PT23h
+
+  measure-generation-requests:
+  - generator: blood-pressure
+    mean-inter-point-duration: PT10s
+    trends:
+      ? systolic-in-mmhg
+      : start-value: 110
+        end-value: 140
+        minimum-value: 70
+        maximum-value: 190
+        standard-deviation: 50
+      ? diastolic-in-mmhg
+      : start-value: 70
+        end-value: 80
+        minimum-value: 60
+        maximum-value: 90
+        standard-deviation: 10
+  - generator: respiratory-rate
+    mean-inter-point-duration: PT60s
+    trends:
+      ? breaths-per-min
+      : start-value: 20
+        end-value: 20
+        standard-deviation: 15
+  - generator: heart-rate
+    mean-inter-point-duration: PT1s
+    trends:
+      ? rate-in-beats-per-minute
+      : start-value: 85
+        end-value: 85
+        minimum-value: 30
+        maximum-value: 220
+        standard-deviation: 40
+  - generator: oxygen-saturation
+    mean-inter-point-duration: PT60s
+    trends:
+      ? oxygen-saturation-level
+      : start-value: 98
+        end-value: 98
+        minimum-value: 80
+        maximum-value: 100
+        standard-deviation: 5
