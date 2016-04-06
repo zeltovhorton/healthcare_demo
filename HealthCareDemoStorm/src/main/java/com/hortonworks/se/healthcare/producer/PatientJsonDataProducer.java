@@ -25,6 +25,9 @@ import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+
+import com.hortonworks.se.healthcare.storm.PatientScheme;
 
 public class PatientJsonDataProducer {
 
@@ -56,36 +59,74 @@ public class PatientJsonDataProducer {
 
 		Producer<String, String> producer = new Producer<String, String>(config);
 
-		Random random = new Random();
 		
-		
-
-		Timestamp effective_time_frame = new Timestamp(new Date().getTime());
-
-		String patientId = "patientId";
-		Float heart_rate = null;
-		Float systolic_blood_pressure = null;
-		Float diastolic_blood_pressure = null;
-		Float respiratory_rate = null;
-		Float oxygen_saturation = null;
-		String event = effective_time_frame + "|" + patientId + "|"
-				+ heart_rate
-
-				+ "|" + oxygen_saturation + "|" + respiratory_rate + "|"
-				+ systolic_blood_pressure + "|" + diastolic_blood_pressure;
-
-		try {
-			KeyedMessage<String, String> data = new KeyedMessage<String, String>(
-					TOPIC, event);
-			LOG.info("Sending Messge PatientId#: " + patientId + ", msg:"
-					+ event);
-			producer.send(data);
-			Thread.sleep(1000);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        Random random = new Random();
+        int count=10;
+		for(int i=0; i<count;i++){
+            //random.nextBoolean()
+    		try {
+    			String json = PatientJsonDataProducer.generateSampleJson(random.nextBoolean()/* hear_rate */, random.nextBoolean()/* blood_pressure */, random.nextBoolean()/*respitory*/, random.nextBoolean()/*oxygen*/);
+    			KeyedMessage<String, String> data = new KeyedMessage<String, String>(
+    					TOPIC, json);
+    			LOG.info(json );
+    			producer.send(data);
+    			Thread.sleep(1000);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+        	
+        }
 
 		producer.close();
+	}
+
+	public static String generateSampleJson(boolean useHeartRate,
+			boolean useBloodPressure, boolean useRespiratory, boolean useOxygen) {
+		String patientId = "patientId";
+		Double heart_rate = null;
+		Double systolic_blood_pressure = null;
+		Double diastolic_blood_pressure = null;
+		Double respiratory_rate = null;
+		Double oxygen_saturation = null;
+	
+		Random r = new Random();
+		double heartRangeMin = 20.0;
+		double heartRangeMax = 150.0;
+		double randomValue = heartRangeMin + (heartRangeMax - heartRangeMin)
+				* r.nextDouble();
+	
+		JSONObject obj = new JSONObject();
+		obj.put(PatientScheme.FIELD_PATIENT_ID, "patiend" + r.nextInt());
+	
+		Timestamp effective_time_frame = new Timestamp(new Date().getTime());
+		obj.put(PatientScheme.FIELD_EVENT_TIME, effective_time_frame.toString());
+		if (useHeartRate) {
+			obj.put(PatientScheme.FIELD_HEART_RATE, randomValue);
+		}
+		if (useBloodPressure) {
+			randomValue = heartRangeMin + (heartRangeMax - heartRangeMin)
+					* r.nextDouble();
+			obj.put(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE, randomValue);
+	
+			randomValue = heartRangeMin + (heartRangeMax - heartRangeMin)
+					* r.nextDouble();
+			obj.put(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE, randomValue);
+		}
+		if(useRespiratory){
+			randomValue = heartRangeMin + (heartRangeMax - heartRangeMin)
+					* r.nextDouble();
+			obj.put(PatientScheme.FIELD_RESPIRATORY_RATE, randomValue);
+			
+		}
+		if (useOxygen){			
+			randomValue = heartRangeMin + (heartRangeMax - heartRangeMin)
+					* r.nextDouble();
+			obj.put(PatientScheme.FIELD_OXYGEN_SATURATION, randomValue);
+		}
+	
+		String jsonString = obj.toJSONString();
+		System.out.println(jsonString);
+		return jsonString;
 	}
 
 }

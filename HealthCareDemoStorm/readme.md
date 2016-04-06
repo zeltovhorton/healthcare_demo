@@ -13,6 +13,15 @@ mvn -v
 cd /usr/hdp/current/kafka-broker/bin/
 ./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic healthcaredemo 
 ```
+####cleanup kafka q. First enable property in ambari->kafka->configs : delete.topic.enable=true
+```
+cd /usr/hdp/current/kafka-broker/bin/
+./kafka-topics.sh --zookeeper localhost:2181 --delete --topic healthcaredemo
+```
+####check the kafka q
+```
+/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic healthcaredemo --from-beginning
+```
 
 ####storm
 ```
@@ -22,7 +31,7 @@ storm jar target/HealthCareDemo-1.0-SNAPSHOT.jar com.hortonworks.se.healthcare.s
 ```
 ####Kill Healthcare Storm Topology
 ```
-healthcare-event-processor
+storm kill healthcare-event-processor
 ```
 
 ####HBASE
