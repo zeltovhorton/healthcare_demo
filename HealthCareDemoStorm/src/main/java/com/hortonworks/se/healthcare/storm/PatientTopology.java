@@ -61,9 +61,12 @@ public class PatientTopology extends BaseEventTopology
                                     conf, builder.createTopology());
     }
 
-    public static void main(String[] str) throws Exception
+    public static void main(String[] args) throws Exception
     {
-        String configFileLocation = "healthcare_event_topology.properties";
+        String configFileLocation = "/opt/HealthCareDemo/healthcare_event_topology.properties";
+        if (args[0]!=null & args[0].length()>0){
+        	configFileLocation = args[0];
+        }
         PatientTopology healthcareTopology 
                 = new PatientTopology(configFileLocation);
         healthcareTopology.buildAndSubmit();

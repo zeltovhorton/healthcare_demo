@@ -7,7 +7,7 @@ cd /usr/hdp/current/kafka-broker/bin/
 
 
 #storm
-[root@sandbox ~]# storm jar target/HealthCareDemo-1.0-SNAPSHOT-shaded.jar com.hortonworks.se.healthcare.storm.Topology 
+[root@sandbox ~]# storm jar target/HealthCareDemo-1.0-SNAPSHOT.jar com.hortonworks.se.healthcare.storm.PatientTopology
 
 #storm kill PatientTopology
 

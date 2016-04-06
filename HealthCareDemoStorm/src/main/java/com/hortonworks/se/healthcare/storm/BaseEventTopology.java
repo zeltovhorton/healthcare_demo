@@ -18,7 +18,12 @@ public abstract class BaseEventTopology {
 		
 		topologyConfig = new Properties();
 		try {
-			topologyConfig.load(ClassLoader.getSystemResourceAsStream(configFileLocation));
+	    	System.out.println("configfile=" + configFileLocation);
+
+			//topologyConfig.load(ClassLoader.getSystemResourceAsStream(configFileLocation));
+			FileInputStream in = new FileInputStream(configFileLocation);
+			topologyConfig.load(in);
+			
 		} catch (FileNotFoundException e) {
 			LOG.error("Encountered error while reading configuration properties: "
 					+ e.getMessage());
