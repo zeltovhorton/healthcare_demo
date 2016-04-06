@@ -8,6 +8,8 @@ cd /usr/hdp/current/kafka-broker/bin/
 
 ####storm
 ```
+mkdir -p /opt/HealthCareDemo/
+cp {GIT_DIRECTORY}/HealthCareDemoStorm/src/main/resources/healthcare_event_topology.properties /opt/HealthCareDemo/
 storm jar target/HealthCareDemo-1.0-SNAPSHOT.jar com.hortonworks.se.healthcare.storm.PatientTopology /opt/HealthCareDemo/healthcare_event_topology.properties
 ```
 ####Kill Healthcare Storm Topology

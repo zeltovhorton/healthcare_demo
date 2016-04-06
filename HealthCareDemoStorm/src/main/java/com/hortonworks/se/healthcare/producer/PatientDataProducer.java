@@ -84,8 +84,8 @@ public class PatientDataProducer {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        //sss
-        producer.close();
+
+        	producer.close();
     }
 
 
