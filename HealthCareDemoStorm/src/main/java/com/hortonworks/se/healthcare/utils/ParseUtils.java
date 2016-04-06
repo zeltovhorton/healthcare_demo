@@ -58,7 +58,7 @@ public class ParseUtils {
 			// while (iterator.hasNext()) {
 			// System.out.println(iterator.next());
 			// }
-			System.out.println(patient);
+			System.out.println("parseJson=" + patient);
 	
 		} catch (Exception e) {
 			e.printStackTrace();

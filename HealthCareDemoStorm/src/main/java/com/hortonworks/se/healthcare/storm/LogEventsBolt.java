@@ -25,13 +25,13 @@ public class LogEventsBolt extends BaseRichBolt
 
     public void execute(Tuple tuple) 
     {
-      LOG.info(tuple.getStringByField(PatientScheme.FIELD_PATIENT_ID)  + "," + 
-              tuple.getDoubleByField(PatientScheme.FIELD_HEART_RATE)    + "," +
-              tuple.getValueByField(PatientScheme.FIELD_EVENT_TIME)  + "," +
-              tuple.getDoubleByField(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE)  + "," +
-              tuple.getDoubleByField(PatientScheme.FIELD_RESPIRATORY_RATE)    + "," +
-              tuple.getDoubleByField(PatientScheme.FIELD_OXYGEN_SATURATION)    + "," +
-              tuple.getDoubleByField(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE));
+//      LOG.info(tuple.getStringByField(PatientScheme.FIELD_PATIENT_ID)  + "," + 
+//              tuple.getDoubleByField(PatientScheme.FIELD_HEART_RATE)    + "," +
+//              tuple.getValueByField(PatientScheme.FIELD_EVENT_TIME)  + "," +
+//              tuple.getDoubleByField(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE)  + "," +
+//              tuple.getDoubleByField(PatientScheme.FIELD_RESPIRATORY_RATE)    + "," +
+//              tuple.getDoubleByField(PatientScheme.FIELD_OXYGEN_SATURATION)    + "," +
+//              tuple.getDoubleByField(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE));
       
     }
     

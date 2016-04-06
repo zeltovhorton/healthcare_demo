@@ -1,5 +1,6 @@
 package com.hortonworks.se.healthcare.storm;
 
+
 import backtype.storm.Config;
 import backtype.storm.StormSubmitter;
 import backtype.storm.spout.SchemeAsMultiScheme;
@@ -13,7 +14,8 @@ public class PatientTopology extends BaseEventTopology
 {
     private static final String KAFKA_SPOUT_ID = "kafkaSpout"; 
     private static final String LOG_BOLT_ID = "logPatientEventBolt";
-            
+	private static final String HBASE_BOLT_ID = "hbaseBolt";
+	
     public PatientTopology(String configFileLocation) throws Exception 
     {
         super(configFileLocation);
@@ -47,12 +49,18 @@ public class PatientTopology extends BaseEventTopology
         LogEventsBolt logBolt = new LogEventsBolt();
         builder.setBolt(LOG_BOLT_ID, logBolt).globalGrouping(KAFKA_SPOUT_ID);
     }
+    public void configureHBaseBolt(TopologyBuilder builder)
+    {
+        TruckHBaseBolt hbaseBolt = new TruckHBaseBolt(topologyConfig);
+        builder.setBolt(HBASE_BOLT_ID, hbaseBolt, 2).shuffleGrouping(KAFKA_SPOUT_ID);
+    }
     
     private void buildAndSubmit() throws Exception
     {
         TopologyBuilder builder = new TopologyBuilder();
         configureKafkaSpout(builder);
         configureLogEventBolt(builder);
+        //configureHBaseBolt(builder);
         
         Config conf = new Config();
         conf.setDebug(true);
