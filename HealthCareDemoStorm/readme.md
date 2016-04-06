@@ -10,7 +10,10 @@ cd /usr/hdp/current/kafka-broker/bin/
 ```
 storm jar target/HealthCareDemo-1.0-SNAPSHOT.jar com.hortonworks.se.healthcare.storm.PatientTopology /opt/HealthCareDemo/healthcare_event_topology.properties
 ```
-#storm kill PatientTopology
+####Kill Healthcare Storm Topology
+```
+healthcare-event-processor
+```
 
 ####HBASE
 ```
