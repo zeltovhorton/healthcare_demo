@@ -1,6 +1,6 @@
 ##### requires maven
 ```
-sh install_maven.sh
+sh install_mvn.sh
 exit
 ```
 ##### log back in and check maven works
