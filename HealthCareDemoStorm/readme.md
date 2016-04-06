@@ -1,4 +1,12 @@
-
+##### requires maven
+```
+sh install_mvn.sh
+exit
+```
+##### log back in and check maven works
+```
+mvn -v
+```
 
 ####setup kafka
 ```
