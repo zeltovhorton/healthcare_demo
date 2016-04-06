@@ -1,6 +1,6 @@
 output:
   # whether to write data points to the "console" or to a "file", defaults to "console"
-  destination: console
+  destination: file
 
 data:
   start-date-time: 2015-01-01T12:00:00Z
