@@ -31,6 +31,14 @@ public class LogEventsBolt extends BaseRichBolt
               tuple.getStringByField(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE)  + "," +
               tuple.getStringByField(PatientScheme.FIELD_RESPIRATORY_RATE)    + "," +
               tuple.getStringByField(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE));
+      
+      System.out.println("LOGEventBolt==="+tuple.getStringByField(PatientScheme.FIELD_PATIENT_ID)  + "," + 
+              tuple.getStringByField(PatientScheme.FIELD_HEART_RATE)    + "," +
+              tuple.getValueByField(PatientScheme.FIELD_EVENT_TIME)  + "," +
+              tuple.getStringByField(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE)  + "," +
+              tuple.getStringByField(PatientScheme.FIELD_RESPIRATORY_RATE)    + "," +
+              tuple.getStringByField(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE));
+
     }
     
 }
