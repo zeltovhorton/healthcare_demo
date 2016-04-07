@@ -24,10 +24,10 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
-public class TruckHBaseBolt implements IRichBolt 
+public class HBaseBolt implements IRichBolt 
 {
     private static final long serialVersionUID = 2946379346389650318L;
-    private static final Logger LOG = Logger.getLogger(TruckHBaseBolt.class);
+    private static final Logger LOG = Logger.getLogger(HBaseBolt.class);
 
     //TABLES
     private static final String EVENTS_TABLE_NAME =  "patient_events";
@@ -49,7 +49,7 @@ public class TruckHBaseBolt implements IRichBolt
     private HTableInterface eventsCountTable;
     private HTableInterface eventsTable;
 
-    public TruckHBaseBolt(Properties topologyConfig) 
+    public HBaseBolt(Properties topologyConfig) 
     {
 
     }

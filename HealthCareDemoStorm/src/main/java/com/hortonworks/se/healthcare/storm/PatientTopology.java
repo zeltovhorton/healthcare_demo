@@ -51,7 +51,7 @@ public class PatientTopology extends BaseEventTopology
     }
     public void configureHBaseBolt(TopologyBuilder builder)
     {
-        TruckHBaseBolt hbaseBolt = new TruckHBaseBolt(topologyConfig);
+        HBaseBolt hbaseBolt = new HBaseBolt(topologyConfig);
         builder.setBolt(HBASE_BOLT_ID, hbaseBolt, 2).shuffleGrouping(KAFKA_SPOUT_ID);
     }
     
