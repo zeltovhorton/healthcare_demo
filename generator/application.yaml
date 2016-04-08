@@ -8,8 +8,8 @@ data:
   header:
     user-id: some-user
 
-  start-date-time: 2015-01-01T12:00:00Z
-  end-date-time: 2015-01-01T12:05:00Z
+  start-date-time: 2016-04-08T15:47:13Z
+  end-date-time: 2016-04-08T16:07:13Z
   suppress-night-time-measures: false
   mean-inter-point-duration: PT23h
 
@@ -22,7 +22,7 @@ data:
         end-value: 140
         minimum-value: 70
         maximum-value: 190
-        standard-deviation: 50
+        standard-deviation: 10
       ? diastolic-in-mmhg
       : start-value: 70
         end-value: 80
@@ -35,7 +35,9 @@ data:
       ? breaths-per-min
       : start-value: 20
         end-value: 20
-        standard-deviation: 15
+        standard-deviation: 10
+        minimum-value: 10
+        maximum-value: 40
   - generator: heart-rate
     mean-inter-point-duration: PT1s
     trends:
@@ -44,7 +46,7 @@ data:
         end-value: 85
         minimum-value: 30
         maximum-value: 220
-        standard-deviation: 40
+        standard-deviation: 5
   - generator: oxygen-saturation
     mean-inter-point-duration: PT60s
     trends:
