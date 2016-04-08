@@ -47,4 +47,4 @@ hbase(main):004:0> exit
 ```
 [root@sandbox HealthCareDemoStorm]# java -cp target/HealthCareDemo-1.0-SNAPSHOT.jar com.hortonworks.se.healthcare.producer.PatientDataProducer sandbox.hortonworks.com:6667 sandbox.hortonworks.com:2181
 ```
-  
+##### hbase bolt requires core-site.xml, hdfs-site.xml and hbase-site.xml on storm's classpath or in src/main/resources 
