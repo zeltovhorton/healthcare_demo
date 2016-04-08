@@ -24,10 +24,10 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
-public class TruckHBaseBolt implements IRichBolt 
+public class PatientHBaseBolt implements IRichBolt 
 {
     private static final long serialVersionUID = 2946379346389650318L;
-    private static final Logger LOG = Logger.getLogger(TruckHBaseBolt.class);
+    private static final Logger LOG = Logger.getLogger(PatientHBaseBolt.class);
 
     //TABLES
     private static final String EVENTS_TABLE_NAME =  "patient_events";
@@ -49,7 +49,7 @@ public class TruckHBaseBolt implements IRichBolt
     private HTableInterface eventsCountTable;
     private HTableInterface eventsTable;
 
-    public TruckHBaseBolt(Properties topologyConfig) 
+    public PatientHBaseBolt(Properties topologyConfig) 
     {
 
     }
@@ -82,7 +82,7 @@ public class TruckHBaseBolt implements IRichBolt
         String patientId = tuple.getStringByField(PatientScheme.FIELD_PATIENT_ID);
 //        Timestamp eventTime = (Timestamp) tuple.getValueByField(PatientScheme.FIELD_EVENT_TIME);
 
-        long incidentTotalCount = getInfractionCountForpatient(patientId);
+        long incidentTotalCount = getPatientData(patientId);
 
         try 
         {
@@ -182,18 +182,18 @@ public class TruckHBaseBolt implements IRichBolt
             return null;
     }
 
-    private long getInfractionCountForpatient(String patientId)
+    public long getPatientData(String patientId)
     {
 
         try 
         {
             byte[] patient = Bytes.toBytes(patientId);
             Get get = new Get(patient);
-            Result result = eventsCountTable.get(get);
+            Result result = eventsTable.get(get);
             long count = 0;
             if(result != null) 
             {
-                byte[] countBytes = result.getValue(CF_EVENTS_COUNT_TABLE, COL_COUNT_VALUE);
+                byte[] countBytes = result.getValue(CF_EVENTS_TABLE, COL_COUNT_VALUE);
                 if(countBytes != null) 
                 {
                     count = Bytes.toLong(countBytes);

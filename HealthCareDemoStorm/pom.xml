@@ -19,7 +19,7 @@
         <storm.hdfs.version>0.10.0.2.3.0.0-2557</storm.hdfs.version>
         <storm.hbase.version>0.10.0.2.3.0.0-2557</storm.hbase.version>
         <hive.version>1.2.1.2.3.0.0-2557</hive.version>
-       
+        <phoenix.version>4.4.0.2.3.0.0-2557</phoenix.version>
    </properties>
   
     <repositories>
@@ -28,6 +28,10 @@
  <!--           <url>http://repo.hortonworks.com/content/repositories/releases/</url> -->
                 <url>http://nexus-private.hortonworks.com/nexus/content/groups/public/</url>
         </repository>
+            <repository>
+      <id>apache release</id>
+      <url>https://repository.apache.org/content/repositories/releases/</url>
+    </repository>
     </repositories>
     <build>
         <plugins>
@@ -89,6 +93,8 @@
              
     </build>
     <dependencies>
+
+    
         <!-- Storm Dependencies -->
         <dependency>
             <groupId>org.apache.storm</groupId>
@@ -269,11 +275,32 @@
         </dependency>		
         
         <!-- Other Dependency -->
-<dependency>
-	<groupId>com.googlecode.json-simple</groupId>
-	<artifactId>json-simple</artifactId>
-	<version>1.1.1</version>
-</dependency>
+	<dependency>
+		<groupId>com.googlecode.json-simple</groupId>
+		<artifactId>json-simple</artifactId>
+		<version>1.1.1</version>
+	</dependency>
+
+	<dependency>
+			<groupId>org.apache.phoenix</groupId>
+			<artifactId>phoenix-core</artifactId>
+			<version>${phoenix.version}</version>
+			<exclusions>
+                                <exclusion>
+                                        <groupId>org.slf4j</groupId>
+                                        <artifactId>log4j-over-slf4j</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                        <groupId>org.slf4j</groupId>
+                                        <artifactId>slf4j-log4j12</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                        <groupId>org.codehaus.jackson</groupId>
+                                        <artifactId>jackson-core-asl</artifactId>
+                                </exclusion>
+ 		</exclusions>
+		</dependency>
+
 
 
         <dependency>        

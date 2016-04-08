@@ -49,7 +49,7 @@ public class PatientTopologyArtem extends BaseEventTopology {
     }
 
     public void configureLogEventBolt(TopologyBuilder builder) {
-        LogEventsBolt logBolt = new LogEventsBolt();
+        SepsisRulesProcessorBolt logBolt = new SepsisRulesProcessorBolt();
         builder.setBolt(LOG_BOLT_ID, logBolt).globalGrouping(KAFKA_SPOUT_ID);
     }
 

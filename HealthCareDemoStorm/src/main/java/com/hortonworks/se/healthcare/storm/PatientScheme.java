@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.hortonworks.se.healthcare.dto.Patient;
-import com.hortonworks.se.healthcare.utils.ParseUtils;
+import com.hortonworks.se.healthcare.utils.PatientUtils;
 
 import backtype.storm.spout.Scheme;
 import backtype.storm.tuple.Fields;
@@ -41,7 +41,7 @@ public class PatientScheme implements Scheme {
 		Patient patient = null;
 		try {
 			String json = new String(bytes, "UTF-8");
-			patient = ParseUtils.parseJson(json);
+			patient = PatientUtils.parseJson(json);
 		} catch (Exception e) {
 			LOG.error(e);
 		}
