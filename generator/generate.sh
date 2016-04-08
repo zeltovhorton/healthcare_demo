@@ -17,7 +17,7 @@ for n in $names; do
 
     perl -pe "s/filename: .*/filename: \.\/generated\/$n.json/g" -i application.yaml
     perl -pe "s/user-id: .*/user-id: $n/g" -i application.yaml
-    /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java -Dlogging.config=logback.xml  -jar data-generator*.jar
+    java -Dlogging.config=logback.xml  -jar data-generator*.jar
 done
 
 for m in blood-pressure respiratory-rate heart-rate oxygen-saturation; do
