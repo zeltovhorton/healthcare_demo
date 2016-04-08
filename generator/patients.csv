@@ -1,0 +1,11 @@
+id,status_s,name_s,risk_score_f
+patient_1,healthy,chris,0
+patient_2,healthy,alex,0
+patient_3,healthy,constantin,0
+patient_4,healthy,veera,0
+patient_5,healthy,vladimir,0
+patient_6,healthy,artem,0
+patient_7,healthy,tom,0
+patient_8,healthy,oleg,0
+patient_9,healthy,jim,0
+patient_10,healthy,herb,0
