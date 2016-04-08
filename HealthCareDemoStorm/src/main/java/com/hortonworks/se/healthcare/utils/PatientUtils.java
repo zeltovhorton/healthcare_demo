@@ -126,7 +126,7 @@ public class PatientUtils {
 
 	public static void createJsonResultForSepsis(Patient patient, String scoreResult) {
 		try {
-			URL url = new URL("http://sandbox:8885/resultListener");
+			URL url = new URL("http://172.24.2.178:8885/resultListener");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
@@ -137,7 +137,7 @@ public class PatientUtils {
 			JSONObject obj = new JSONObject();
 
 			obj.put("id", patient.patientId );
-			obj.put("record_type_s", "patient_status" );
+			obj.put("record_type_s", "patient_stat" );
 			obj.put(PatientScheme.FIELD_PATIENT_ID, patient.patientId );
 			obj.put(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE, patient.diastolicBloodPressure );
 			obj.put(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE, patient.systolicBloodPressure );
