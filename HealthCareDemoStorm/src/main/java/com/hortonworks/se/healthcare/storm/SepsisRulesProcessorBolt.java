@@ -77,8 +77,10 @@ public class SepsisRulesProcessorBolt extends BaseRichBolt
 
 	public String determineDyspnearesult(Patient patient) {
 		String result = BAD_DATA;
-		
-		if (patient.heartRate <=49 || patient.respitatoryRate<=10 || patient.systolicBloodPressure<=89 || patient.oxygenRate <=89){
+		if (patient.heartRate ==-1 && patient.respitatoryRate==-1  && patient.systolicBloodPressure==-1  && patient.oxygenRate ==-1){
+			result = "ALL_NULLS";			
+		}
+		else if (patient.heartRate <=49 || patient.respitatoryRate<=10 || patient.systolicBloodPressure<=89 || patient.oxygenRate <=89){
 			result = CRITICAL;
 		}
 		else if ((patient.heartRate >49 && patient.heartRate <=59) || (patient.respitatoryRate >10 && patient.respitatoryRate<=15) || ( patient.systolicBloodPressure>89 && patient.systolicBloodPressure<=99 )||( patient.oxygenRate> 89 && patient.oxygenRate <=94)){
