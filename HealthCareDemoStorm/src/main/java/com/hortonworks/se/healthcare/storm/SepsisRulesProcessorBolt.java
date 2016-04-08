@@ -63,7 +63,7 @@ public class SepsisRulesProcessorBolt extends BaseRichBolt
 
     	String determineDyspnearesult = determineDyspnearesult(patient);
     	System.out.println("determineDyspnearesult" + determineDyspnearesult);
-    	PatientUtils.createJsonResultForSepsis(patient.patientId, determineDyspnearesult);
+    	PatientUtils.createJsonResultForSepsis(patient, determineDyspnearesult);
     	
 //      LOG.info(tuple.getStringByField(PatientScheme.FIELD_PATIENT_ID)  + "," + 
 //              tuple.getDoubleByField(PatientScheme.FIELD_HEART_RATE)    + "," +

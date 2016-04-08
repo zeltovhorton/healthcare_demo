@@ -89,7 +89,7 @@ public class PatientUtils {
 
 	}
 
-	public static void createJsonResultForSepsis(String patientId, String scoreResult) {
+	public static void createJsonResultForSepsis(Patient patient, String scoreResult) {
 		try {
 			URL url = new URL("http://sandbox:8885/resultListener");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -101,7 +101,12 @@ public class PatientUtils {
 			
 			JSONObject obj = new JSONObject();
 
-			obj.put(PatientScheme.FIELD_PATIENT_ID, patientId );
+			obj.put(PatientScheme.FIELD_PATIENT_ID, patient.patientId );
+			obj.put(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE, patient.diastolicBloodPressure );
+			obj.put(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE, patient.systolicBloodPressure );
+			obj.put(PatientScheme.FIELD_HEART_RATE, patient.heartRate );
+			obj.put(PatientScheme.FIELD_OXYGEN_SATURATION, patient.oxygenRate );
+			obj.put(PatientScheme.FIELD_RESPIRATORY_RATE, patient.respitatoryRate );
 			obj.put("score", scoreResult);
 
 			Timestamp effective_time_frame = new Timestamp(new Date().getTime());

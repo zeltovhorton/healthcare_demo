@@ -12,7 +12,7 @@ public class SendPatientSepsisResultsTest {
 
 	public static void main(String[] args) {
 
-		PatientUtils.createJsonResultForSepsis("patiend", "score");
+//		PatientUtils.createJsonResultForSepsis("patiend", "score");
 
 	}
 }
