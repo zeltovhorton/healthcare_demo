@@ -23,6 +23,12 @@ public class PatientTopologyArtem extends BaseEventTopology {
         super(configFileLocation);
     }
 
+    // TODO make sure Kafka reads from specific point/offset
+    // Make sure to do conf.set hbase-conf-key like Alex showed you
+    
+    
+    
+    
     private SpoutConfig constructKafkaSpoutConf() {
         BrokerHosts hosts = new ZkHosts(topologyConfig.getProperty("kafka.zookeeper.host.port"));
         String topic = topologyConfig.getProperty("kafka.topic");
