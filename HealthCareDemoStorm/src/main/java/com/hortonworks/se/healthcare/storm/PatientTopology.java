@@ -46,12 +46,12 @@ public class PatientTopology extends BaseEventTopology
     
     public void configureLogEventBolt(TopologyBuilder builder)
     {
-        LogEventsBolt logBolt = new LogEventsBolt();
+        SepsisRulesProcessorBolt logBolt = new SepsisRulesProcessorBolt();
         builder.setBolt(LOG_BOLT_ID, logBolt).globalGrouping(KAFKA_SPOUT_ID);
     }
     public void configureHBaseBolt(TopologyBuilder builder)
     {
-        TruckHBaseBolt hbaseBolt = new TruckHBaseBolt(topologyConfig);
+        PatientHBaseBolt hbaseBolt = new PatientHBaseBolt(topologyConfig);
         builder.setBolt(HBASE_BOLT_ID, hbaseBolt, 2).shuffleGrouping(KAFKA_SPOUT_ID);
     }
     

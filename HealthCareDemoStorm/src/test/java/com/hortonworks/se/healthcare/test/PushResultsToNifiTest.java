@@ -14,7 +14,7 @@ import org.json.simple.JSONObject;
 
 import com.hortonworks.se.healthcare.producer.PatientJsonDataProducer;
 import com.hortonworks.se.healthcare.storm.PatientScheme;
-import com.hortonworks.se.healthcare.utils.ParseUtils;
+import com.hortonworks.se.healthcare.utils.PatientUtils;
 
 public class PushResultsToNifiTest {
 
@@ -22,6 +22,7 @@ public class PushResultsToNifiTest {
 
 		String generateJson = generateJson();
 		System.out.println(generateJson);
+		
 		//createJsonResultForSepsis();
 
 	}
