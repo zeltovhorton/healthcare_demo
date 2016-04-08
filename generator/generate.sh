@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+rm -f *.json *.txt
+
 names=$(cat patients.csv  | tail -n +2 | cut -d, -f3)
 for n in $names; do
 
@@ -11,4 +13,8 @@ for n in $names; do
 
     perl -pe "s/some-user/$n/g" -i application.yaml
     /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java -Dlogging.config=logback.xml  -jar data-generator*.jar
+done
+
+for m in blood-pressure respiratory-rate heart-rate oxygen-saturation; do
+    grep $m *.json > $m.json
 done

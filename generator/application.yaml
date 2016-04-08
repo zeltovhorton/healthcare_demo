@@ -1,8 +1,13 @@
 output:
-  # whether to write data points to the "console" or to a "file", defaults to "console"
   destination: file
+  file:
+    filename: some-user.json
+    append: true
 
 data:
+  header:
+    user-id: some-user
+
   start-date-time: 2015-01-01T12:00:00Z
   end-date-time: 2015-01-01T12:05:00Z
   suppress-night-time-measures: false
