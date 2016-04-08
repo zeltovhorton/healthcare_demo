@@ -16,7 +16,7 @@ for n in $names; do
     perl -pe "s/(end-date-time: ).*/end-date-time: $end/g" -i application.yaml
 
     perl -pe "s/filename: .*/filename: \.\/generated\/$n.json/g" -i application.yaml
-    perl -pe "s/some-user/$n/g" -i application.yaml
+    perl -pe "s/user-id: .*/user-id: $n/g" -i application.yaml
     /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java -Dlogging.config=logback.xml  -jar data-generator*.jar
 done
 
