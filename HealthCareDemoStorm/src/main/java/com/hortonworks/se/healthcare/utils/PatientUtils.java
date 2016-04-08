@@ -31,15 +31,29 @@ public class PatientUtils {
 
 			Object objHeartRate = jsonObject
 					.get(PatientScheme.FIELD_HEART_RATE);
-			if (objHeartRate != null) {
-				patient.heartRate = (Double) objHeartRate;
+			if (objHeartRate != null ) {
+				try
+			    {
+					patient.heartRate= Double.parseDouble(objHeartRate.toString());
+			    }
+			    catch(Exception nfe)
+			    {
+					patient.heartRate = -1.0;
+			    }
 			} else {
 				patient.heartRate = -1.0;
 			}
 			Object objRespitatoryRate = jsonObject
 					.get(PatientScheme.FIELD_RESPIRATORY_RATE);
 			if (objRespitatoryRate != null) {
-				patient.respitatoryRate = (Double) objRespitatoryRate;
+				try
+			    {
+					patient.respitatoryRate= Double.parseDouble(objRespitatoryRate.toString());
+			    }
+			    catch(Exception nfe)
+			    {
+					patient.respitatoryRate = -1.0;
+			    }
 			} else {
 				patient.respitatoryRate = -1.0;
 			}
@@ -47,21 +61,42 @@ public class PatientUtils {
 			Object objOxygenRate = jsonObject
 					.get(PatientScheme.FIELD_OXYGEN_SATURATION);
 			if (objOxygenRate != null) {
-				patient.oxygenRate = (Double) objOxygenRate;
+				try
+			    {
+					patient.oxygenRate= Double.parseDouble(objOxygenRate.toString());
+			    }
+			    catch(Exception nfe)
+			    {
+					patient.oxygenRate = -1.0;
+			    }
 			} else {
 				patient.oxygenRate = -1.0;
 			}
 			Object objDiastolicBloodPressure = jsonObject
 					.get(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE);
 			if (objDiastolicBloodPressure != null) {
-				patient.diastolicBloodPressure = (Double) objDiastolicBloodPressure;
+				try
+			    {
+					patient.diastolicBloodPressure= Double.parseDouble(objDiastolicBloodPressure.toString());
+			    }
+			    catch(Exception nfe)
+			    {
+					patient.diastolicBloodPressure = -1.0;
+			    }
 			} else {
 				patient.diastolicBloodPressure = -1.0;
 			}
 			Object objSystolicBloodPressure = jsonObject
 					.get(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE);
 			if (objSystolicBloodPressure != null) {
-				patient.systolicBloodPressure = (Double) objSystolicBloodPressure;
+				try
+			    {
+					patient.systolicBloodPressure= Double.parseDouble(objSystolicBloodPressure.toString());
+			    }
+			    catch(Exception nfe)
+			    {
+					patient.systolicBloodPressure = -1.0;
+			    }
 			} else {
 				patient.systolicBloodPressure = -1.0;
 			}
@@ -101,6 +136,7 @@ public class PatientUtils {
 			
 			JSONObject obj = new JSONObject();
 
+			obj.put("id", patient.patientId );
 			obj.put(PatientScheme.FIELD_PATIENT_ID, patient.patientId );
 			obj.put(PatientScheme.FIELD_DIASTOLIC_BLOOD_PRESSURE, patient.diastolicBloodPressure );
 			obj.put(PatientScheme.FIELD_SYSTOLIC_BLOOD_PRESSURE, patient.systolicBloodPressure );
