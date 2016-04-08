@@ -55,8 +55,13 @@ public class PatientTopologyArtem extends BaseEventTopology {
 
     public void configureHBaseBolt(TopologyBuilder builder) {
         SimpleHBaseMapper mapper = new SimpleHBaseMapper()
-                .withRowKeyField(UUID.randomUUID().toString())
+                .withRowKeyField("patient_id_s")
                 .withColumnFields(new Fields("diastolic_blood_pressure_f"))
+                .withColumnFields(new Fields("oxygen_saturation_f"))
+                .withColumnFields(new Fields("heart_rate_f"))
+                .withColumnFields(new Fields("respiratory_rate_f"))
+                .withColumnFields(new Fields("systolic_blood_pressure_f"))
+                .withColumnFields(new Fields("effective_time_frame_tdt"))
                 // "patient_id_s,heart_rate_f,respiratory_rate_f,oxygen_saturation_f,systolic_blood_pressure_f,diastolic_blood_pressure_f"
                 // .withCounterFields(new Fields("count"))
                 .withColumnFamily("events");
