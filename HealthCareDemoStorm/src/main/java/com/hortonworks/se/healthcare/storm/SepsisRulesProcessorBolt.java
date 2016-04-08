@@ -83,19 +83,19 @@ public class SepsisRulesProcessorBolt extends BaseRichBolt
 		if (patient.heartRate ==-1 && patient.respitatoryRate==-1  && patient.systolicBloodPressure==-1  && patient.oxygenRate ==-1){
 			result = ALL_NULLS;			
 		}
-		else if (patient.heartRate <=49 || patient.respitatoryRate<=10 || patient.systolicBloodPressure<=89 || patient.oxygenRate <=89){
+		else if (patient.heartRate <=49 && patient.respitatoryRate<=10 && patient.systolicBloodPressure<=89 && patient.oxygenRate <=89){
 			result = CRITICAL;
 		}
-		else if ((patient.heartRate >49 && patient.heartRate <=59) || (patient.respitatoryRate >10 && patient.respitatoryRate<=15) || ( patient.systolicBloodPressure>89 && patient.systolicBloodPressure<=99 )||( patient.oxygenRate> 89 && patient.oxygenRate <=94)){
+		else if ((patient.heartRate >49 && patient.heartRate <=59) && (patient.respitatoryRate >10 && patient.respitatoryRate<=15) && ( patient.systolicBloodPressure>89 && patient.systolicBloodPressure<=99 )&&( patient.oxygenRate> 89 && patient.oxygenRate <=94)){
 			result = WARN;			
 		}
-		else if ((patient.heartRate >59 && patient.heartRate <=100) || (patient.respitatoryRate >15 && patient.respitatoryRate<=20) || ( patient.systolicBloodPressure>99 && patient.systolicBloodPressure<=140 )||( patient.oxygenRate> 95  && patient.oxygenRate <=100)){
+		else if ((patient.heartRate >59 && patient.heartRate <=100) && (patient.respitatoryRate >15 && patient.respitatoryRate<=20) && ( patient.systolicBloodPressure>99 && patient.systolicBloodPressure<=140 )&&( patient.oxygenRate> 95  && patient.oxygenRate <=100)){
 			result = NORMAL;			
 		}
-		else if ((patient.heartRate >100 && patient.heartRate <=119) || (patient.respitatoryRate > 20 && patient.respitatoryRate<=29) || ( patient.systolicBloodPressure>140 && patient.systolicBloodPressure<=180 )){
+		else if ((patient.heartRate >100 && patient.heartRate <=119) && (patient.respitatoryRate > 20 && patient.respitatoryRate<=29) && ( patient.systolicBloodPressure>140 && patient.systolicBloodPressure<=180 )){
 			result = WARN;			
 		}
-		else if ((patient.heartRate >120) || (patient.respitatoryRate >30 ) || ( patient.systolicBloodPressure >181 )){
+		else if ((patient.heartRate >120) && (patient.respitatoryRate >30 ) && ( patient.systolicBloodPressure >181 )){
 			result = CRITICAL;			
 		}
 		return result;
