@@ -1,4 +1,4 @@
-## HEALTH CARE DEMO GOAL: Actively monitor ICU patients for risk indicators of Sepsis
+### HEALTH CARE DEMO GOAL: Actively monitor ICU patients for risk indicators of Sepsis
 
 #### Motivation
 
