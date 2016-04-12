@@ -12,6 +12,7 @@ Sepsis is a potentially life-threatening complication of an infection. Sepsis oc
 * NIFI
 * STORM
 * SOLR
+* KAFKA
 * HBASE
 
 ## SETUP
