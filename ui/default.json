@@ -1,5 +1,5 @@
 ﻿{
-  "title": "Basic Dashboard With Pointers",
+  "title": "Active Sepsis Monitoring",
   "services": {
     "query": {
       "idQueue": [
@@ -55,7 +55,7 @@
           "type": "timepicker",
           "loadingEditor": false,
           "status": "Stable",
-          "mode": "relative",
+          "mode": "absolute",
           "spyable": true,
           "time_options": [
             "5m",
@@ -71,39 +71,37 @@
             "1y",
             "5y"
           ],
-          "timespan": "6h",
+          "timespan": "2d",
           "timefield": "event_timestamp_tdt",
           "timeformat": "",
           "refresh": {
             "enable": false,
-            "interval": 3,
+            "interval": 5,
             "min": 3
           },
-          "filter_id": 0,
-          "title": "Time Window"
+          "filter_id": 1,
+          "title": "Time Window",
+          "time": {
+            "from": "04/08/2016 02:04:09",
+            "to": "04/08/2016 08:28:09"
+          }
         },
         {
           "error": false,
-          "span": 2,
+          "span": 4,
           "editable": true,
-          "spyable": true,
-          "group": [
-            "default"
-          ],
           "type": "query",
-          "label": "Search",
-          "history": [
-            "*:*",
-            "*"
-          ],
-          "remember": 10,
+          "loadingEditor": false,
+          "query": "*:*",
           "pinned": true,
-          "query": "*",
-          "title": "Search",
-          "def_type": ""
+          "history": [
+            "*:*"
+          ],
+          "spyable": true,
+          "remember": 10
         },
         {
-          "span": 1,
+          "span": 2,
           "editable": true,
           "type": "hits",
           "loadingEditor": false,
@@ -143,7 +141,7 @@
       "panels": [
         {
           "error": false,
-          "span": 12,
+          "span": 6,
           "editable": true,
           "spyable": true,
           "group": [
@@ -161,7 +159,7 @@
       "collapsable": true,
       "panels": [
         {
-          "span": 2,
+          "span": 6,
           "editable": true,
           "type": "table",
           "loadingEditor": false,
@@ -186,10 +184,22 @@
           },
           "overflow": "min-height",
           "fields": [
-            "name_s",
-            "status_s"
+            "id",
+            "score_s"
           ],
-          "important_fields": [],
+          "important_fields": [
+            "_version_",
+            "diastolic_blood_pressure_f",
+            "effective_time_frame_tdt",
+            "heart_rate_f",
+            "id",
+            "oxygen_saturation_f",
+            "patient_id_s",
+            "record_type_s",
+            "respiratory_rate_f",
+            "score_s",
+            "systolic_blood_pressure_f"
+          ],
           "highlight": [],
           "header": true,
           "paging": true,
@@ -211,61 +221,45 @@
         {
           "span": 4,
           "editable": true,
-          "type": "histogram",
+          "type": "facet",
           "loadingEditor": false,
-          "mode": "values",
+          "status": "Stable",
           "queries": {
             "mode": "all",
             "ids": [
               0
             ],
-            "query": "",
+            "query": "q=*%3A*&facet=true&facet.field=patient_id_s&wt=json",
+            "basic_query": "q=*%3A*&facet=true&facet.field=patient_id_s",
             "custom": ""
           },
-          "max_rows": 100000,
-          "value_field": "systolic_blood_pressure_f",
-          "group_field": null,
-          "auto_int": true,
-          "resolution": 100,
-          "interval": "1y",
-          "intervals": [
-            "auto",
-            "1s",
-            "1m",
-            "5m",
-            "10m",
-            "30m",
-            "1h",
-            "3h",
-            "12h",
-            "1d",
-            "1w",
-            "1M",
-            "1y"
-          ],
-          "fill": 1,
-          "linewidth": 3,
-          "timezone": "browser",
-          "spyable": true,
-          "zoomlinks": true,
-          "bars": true,
-          "stack": true,
-          "points": false,
-          "lines": true,
-          "legend": true,
-          "x-axis": true,
-          "y-axis": true,
-          "percentage": false,
-          "interactive": true,
-          "options": true,
-          "tooltip": {
-            "value_type": "individual",
-            "query_as_alias": false
+          "group": "default",
+          "style": {
+            "font-size": "9pt"
           },
-          "title": "Event Counts",
-          "lines_smooth": false,
-          "show_queries": true
-        },
+          "overflow": "min-height",
+          "fields": [
+            "patient_id_s"
+          ],
+          "spyable": true,
+          "facet_limit": 10,
+          "maxnum_facets": 5,
+          "foundResults": true,
+          "header_title": "Facet Fields",
+          "toggle_element": "patient_id_s",
+          "show_queries": true,
+          "exportSize": null,
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "title": "Graph",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
         {
           "span": 4,
           "editable": true,
@@ -290,35 +284,7 @@
           "xaxis": "diastolic_blood_pressure_f",
           "yaxis": "systolic_blood_pressure_f",
           "field_type": "patient_id_s",
-          "error": false
-        }
-      ]
-    },
-    {
-      "title": "Graph",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "collapsable": true,
-      "panels": [
-        {
-          "span": 2,
-          "editable": true,
-          "type": "bar",
-          "loadingEditor": false,
-          "queries": {
-            "mode": "all",
-            "query": "q=*%3A*&wt=json&rows=0&facet=true&facet.field=record_type_s&facet.limit=10",
-            "custom": "",
-            "ids": [
-              0
-            ]
-          },
-          "field": "record_type_s",
-          "size": 10,
-          "spyable": true,
-          "show_queries": true,
-          "title": "Records"
+          "title": "Blood Pressure"
         },
         {
           "span": 2,
@@ -327,17 +293,132 @@
           "loadingEditor": false,
           "queries": {
             "mode": "all",
-            "query": "q=*%3A*&wt=json&rows=0&facet=true&facet.field=patient_id_s&facet.limit=10",
+            "query": "q=*%3A*&wt=json&rows=0&facet=true&facet.field=heart_rate&facet.limit=10",
             "custom": "",
             "ids": [
               0
             ]
           },
-          "field": "patient_id_s",
+          "field": "heart_rate",
           "size": 10,
           "spyable": true,
           "show_queries": true,
           "title": "Patient Readings"
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "values",
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "",
+            "custom": ""
+          },
+          "max_rows": 100000,
+          "value_field": "heart_rate_f",
+          "group_field": null,
+          "auto_int": true,
+          "resolution": 100,
+          "interval": "1y",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1M",
+            "1y"
+          ],
+          "fill": 0,
+          "linewidth": 3,
+          "timezone": "utc",
+          "spyable": true,
+          "zoomlinks": true,
+          "bars": false,
+          "stack": true,
+          "points": false,
+          "lines": true,
+          "lines_smooth": false,
+          "legend": true,
+          "x-axis": true,
+          "y-axis": true,
+          "percentage": false,
+          "interactive": true,
+          "options": true,
+          "show_queries": true,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": false
+          }
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "values",
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "",
+            "custom": ""
+          },
+          "max_rows": 100000,
+          "value_field": "respiratory_rate_f",
+          "group_field": null,
+          "auto_int": true,
+          "resolution": 100,
+          "interval": "1y",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1M",
+            "1y"
+          ],
+          "fill": 0,
+          "linewidth": 3,
+          "timezone": "browser",
+          "spyable": true,
+          "zoomlinks": true,
+          "bars": false,
+          "stack": false,
+          "points": true,
+          "lines": false,
+          "lines_smooth": false,
+          "legend": true,
+          "x-axis": true,
+          "y-axis": true,
+          "percentage": false,
+          "interactive": true,
+          "options": true,
+          "show_queries": true,
+          "tooltip": {
+            "value_type": "individual",
+            "query_as_alias": false
+          },
+          "title": "Respiratory Rate"
         }
       ]
     },
@@ -387,13 +468,39 @@
             "query": "q=*%3A*&sort=event_timestamp_tdt desc&wt=json&rows=500",
             "basic_query": "q=*%3A*&sort=event_timestamp_tdt desc"
           },
-          "field_list": false,
+          "field_list": true,
           "status": "Stable",
           "trimFactor": 300,
           "normTimes": true,
           "title": "Events",
           "time_field": "event_timestamp",
-          "important_fields": [],
+          "important_fields": [
+            "_version_",
+            "effective_time_frame",
+            "effective_time_frame_tdt",
+            "event_timestamp_tdt",
+            "file.creationTime",
+            "file.group",
+            "file.lastAccessTime",
+            "file.lastModifiedTime",
+            "file.owner",
+            "file.permissions",
+            "fragment.count",
+            "fragment.identifier",
+            "fragment.index",
+            "heart_rate",
+            "heart_rate_f",
+            "id",
+            "merge.bin.age",
+            "merge.count",
+            "merge_id",
+            "patient_id",
+            "patient_id_s",
+            "record_type",
+            "record_type_s",
+            "segment.original.filename",
+            "text.line.count"
+          ],
           "saveOption": "json",
           "exportSize": 500,
           "exportAll": true,
@@ -436,8 +543,7 @@
     "server": "/solr/",
     "core_name": "healthcare",
     "core_list": [
-      "healthcare",
-      "nifiDemo"
+      "healthcare"
     ],
     "global_params": ""
   }
