@@ -19,11 +19,11 @@ import com.hortonworks.se.healthcare.utils.PatientUtils;
 
 public class SepsisRulesProcessorBolt extends BaseRichBolt
 {
-    private static final String ALL_NULLS = "ALL_NULLS";
-	private static final String BAD_DATA = "BAD_DATA";
-    private static final String CRITICAL = "CRITICAL";
-    private static final String WARN = "WARN";
-    private static final String NORMAL = "NORMAL";
+    public static final String ALL_NULLS = "ALL_NULLS";
+    public static final String BAD_DATA = "BAD_DATA";
+    public static final String CRITICAL = "CRITICAL";
+    public static final String WARN = "WARN";
+    public static final String NORMAL = "NORMAL";
     
 	private static final Logger LOG = Logger.getLogger(SepsisRulesProcessorBolt.class);
     
