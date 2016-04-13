@@ -50,7 +50,14 @@ hbase(main):004:0> exit
 ```
 ##### hbase bolt requires core-site.xml, hdfs-site.xml and hbase-site.xml on storm's classpath or in src/main/resources 
 
-#### solr
+### solr (hdp search)
+```
+cd
+./start_solr.sh
+sh /opt/lucidworks/solr/bin/solr create -c healthcare -d /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf -n healthcare
+```
+
+#### solr (fresh install)
 ```
 wget http://apache.mirror1.spango.com/lucene/solr/5.2.1/solr-5.2.1.tg
 
@@ -67,6 +74,7 @@ Creating new core 'healthcare' using command:
 http://localhost:8983/solr/admin/cores?action=CREATE&name=healthcare&instanceDir=healthcare
 ```
 ####BANANA
+You don't need to do this if you're using HDP Search
 unzip banana-release.zip
 mv banana-release banana
 cp -R banana /root/solr-5.2.1/server/solr-webapp/
