@@ -124,9 +124,10 @@ public class PatientUtils {
 
 	}
 
-	public static void createJsonResultForSepsis(Patient patient, String scoreResult) {
+	public static void createJsonResultForSepsis(Patient patient, String scoreResult, String nifiUrl) {
 		try {
-			URL url = new URL("http://172.24.2.178:8885/resultListener");
+			
+			URL url = new URL(nifiUrl+"/resultListener");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");

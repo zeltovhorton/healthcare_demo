@@ -26,8 +26,18 @@ public class SepsisRulesProcessorBolt extends BaseRichBolt
     public static final String NORMAL = "NORMAL";
     
 	private static final Logger LOG = Logger.getLogger(SepsisRulesProcessorBolt.class);
+	private String nifiUrl = "http://sandbox:8885";
+	
+    public SepsisRulesProcessorBolt() {
+    	System.out.println("defautl nifiurl=" + nifiUrl);
+	}
     
-    public void declareOutputFields(OutputFieldsDeclarer ofd) 
+    public SepsisRulesProcessorBolt(String nifiUrl) {
+    	this.nifiUrl= nifiUrl;
+    	System.out.println("nifiurl=" + nifiUrl);
+	}
+
+	public void declareOutputFields(OutputFieldsDeclarer ofd) 
     {
        //none prints to the Logger.
     }
@@ -65,7 +75,7 @@ public class SepsisRulesProcessorBolt extends BaseRichBolt
     	String determineDyspnearesult = determineDyspnearesult(patient);
     	System.out.println("determineDyspnearesult" + determineDyspnearesult);
     	if (determineDyspnearesult!=ALL_NULLS){
-        	PatientUtils.createJsonResultForSepsis(patient, determineDyspnearesult);
+        	PatientUtils.createJsonResultForSepsis(patient, determineDyspnearesult, nifiUrl);
     	}
     	
 //      LOG.info(tuple.getStringByField(PatientScheme.FIELD_PATIENT_ID)  + "," + 

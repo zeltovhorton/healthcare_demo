@@ -46,7 +46,8 @@ public class PatientTopology extends BaseEventTopology
     
     public void configureLogEventBolt(TopologyBuilder builder)
     {
-        SepsisRulesProcessorBolt logBolt = new SepsisRulesProcessorBolt();
+        String nifiUrl = topologyConfig.getProperty("nifi.url");
+        SepsisRulesProcessorBolt logBolt = new SepsisRulesProcessorBolt(nifiUrl);
         builder.setBolt(LOG_BOLT_ID, logBolt).globalGrouping(KAFKA_SPOUT_ID);
     }
     public void configureHBaseBolt(TopologyBuilder builder)
