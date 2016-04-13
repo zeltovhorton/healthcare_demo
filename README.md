@@ -42,6 +42,7 @@ cd /usr/hdp/current/kafka-broker/bin/
 ```
 
 ####storm
+Make sure Storm is started.  
 From the /HealthCareDemoStorm directory...
 ```
 mvn clean install
