@@ -88,9 +88,15 @@ Creating new core 'healthcare' using command:
 http://localhost:8983/solr/admin/cores?action=CREATE&name=healthcare&instanceDir=healthcare
 ```
 ####BANANA
+Install Banana 1.6 and add the Sepsis Monitoring Dashboard as the default dashboard
+
+```
 unzip banana-release.zip
 mv banana-release banana
 cp -R banana /root/solr-5.2.1/server/solr-webapp/
+mv /root/solr-5.2.1/server/solr-webapp/webapp/banana/src/app/dashboards/default.json /root/solr-5.2.1/server/solr-webapp/webapp/banana/src/app/dashboards/default_bkp.json
+cp {GIT_DIRECTORY}/ui/Active_Sepsis_Monitoring.json /root/solr-5.2.1/server/solr-webapp/webapp/banana/src/app/dashboards/default.json
+```
 
 #### TO DELETE SOLR INDEX
 ```
