@@ -2,7 +2,7 @@ output:
   destination: file
   file:
     filename: some-user.json
-    append: true
+    append: false
 
 data:
   header:
@@ -39,7 +39,7 @@ data:
         minimum-value: 10
         maximum-value: 40
   - generator: heart-rate
-    mean-inter-point-duration: PT1s
+    mean-inter-point-duration: PT10s
     trends:
       ? rate-in-beats-per-minute
       : start-value: 85
